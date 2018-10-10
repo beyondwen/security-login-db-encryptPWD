@@ -1,3 +1,4 @@
+代码来至 Spring4All社区用于学习Spring Security
 前置文章
 ----------
 [Spring Security 入门：基于数据库验证](http://www.jianshu.com/p/d425f8031f83)
