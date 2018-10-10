@@ -2,9 +2,11 @@ package com.spring4all.config;
 
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
+import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 
+@Component
 public class UrlFilterInvocationSecurityMetadataSource  implements FilterInvocationSecurityMetadataSource {
 
     @Override
