@@ -1,8 +1,8 @@
 package com.spring4all.service.impl;
 
 import com.spring4all.constant.RoleConstant;
-import com.spring4all.entity.UserEntity;
-import com.spring4all.mapper.UserMapper;
+import com.spring4all.domain.po.UserEntity;
+import com.spring4all.domain.UserMapper;
 import com.spring4all.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;

@@ -1,7 +1,6 @@
 package com.spring4all.service;
 
-import com.spring4all.entity.RoleMenuEntity;
-import com.spring4all.entity.UserRoleEntity;
+import com.spring4all.domain.po.RoleMenuEntity;
 
 import java.util.List;
 

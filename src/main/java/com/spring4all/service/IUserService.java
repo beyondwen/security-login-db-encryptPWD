@@ -1,6 +1,6 @@
 package com.spring4all.service;
 
-import com.spring4all.entity.UserEntity;
+import com.spring4all.domain.po.UserEntity;
 
 public interface IUserService {
 

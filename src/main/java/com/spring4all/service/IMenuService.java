@@ -1,6 +1,6 @@
 package com.spring4all.service;
 
-import com.spring4all.entity.MenuEntity;
+import com.spring4all.domain.po.MenuEntity;
 
 public interface IMenuService {
 

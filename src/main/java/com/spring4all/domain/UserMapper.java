@@ -1,6 +1,6 @@
-package com.spring4all.mapper;
+package com.spring4all.domain;
 
-import com.spring4all.entity.UserEntity;
+import com.spring4all.domain.po.UserEntity;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

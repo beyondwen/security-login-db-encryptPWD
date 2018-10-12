@@ -1,6 +1,6 @@
 package com.spring4all.config;
 
-import com.spring4all.entity.UserEntity;
+import com.spring4all.domain.po.UserEntity;
 import com.spring4all.service.IRoleService;
 import com.spring4all.service.IUserRoleService;
 import com.spring4all.service.IUserService;

@@ -1,6 +1,6 @@
 package com.spring4all.controller;
 
-import com.spring4all.entity.UserEntity;
+import com.spring4all.domain.po.UserEntity;
 import com.spring4all.service.IUserService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

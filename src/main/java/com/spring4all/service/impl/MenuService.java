@@ -1,7 +1,7 @@
 package com.spring4all.service.impl;
 
-import com.spring4all.entity.MenuEntity;
-import com.spring4all.mapper.MenuMapper;
+import com.spring4all.domain.po.MenuEntity;
+import com.spring4all.domain.MenuMapper;
 import com.spring4all.service.IMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;

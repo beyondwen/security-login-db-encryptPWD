@@ -1,7 +1,7 @@
 package com.spring4all.service.impl;
 
-import com.spring4all.entity.RoleEntity;
-import com.spring4all.mapper.RoleMapper;
+import com.spring4all.domain.po.RoleEntity;
+import com.spring4all.domain.RoleMapper;
 import com.spring4all.service.IRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;

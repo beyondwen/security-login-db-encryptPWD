@@ -1,6 +1,6 @@
 package com.spring4all.service;
 
-import com.spring4all.entity.RoleEntity;
+import com.spring4all.domain.po.RoleEntity;
 
 public interface IRoleService {
 

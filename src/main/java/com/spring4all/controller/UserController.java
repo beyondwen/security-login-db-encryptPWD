@@ -1,6 +1,6 @@
 package com.spring4all.controller;
 
-import com.spring4all.entity.UserEntity;
+import com.spring4all.domain.po.UserEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

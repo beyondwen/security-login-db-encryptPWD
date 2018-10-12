@@ -1,7 +1,7 @@
 package com.spring4all.service.impl;
 
-import com.spring4all.entity.UserRoleEntity;
-import com.spring4all.mapper.UserRoleMapper;
+import com.spring4all.domain.po.UserRoleEntity;
+import com.spring4all.domain.UserRoleMapper;
 import com.spring4all.service.IUserRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;

@@ -1,4 +1,4 @@
-package com.spring4all.entity;
+package com.spring4all.domain.po;
 
 public class RoleMenuEntity {
 
