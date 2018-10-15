@@ -5,12 +5,11 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+
 @Mapper
-@Component
 public interface UserRoleMapper {
 
     @Insert("insert into user_role(user_role_id, user_id , role_id) values(#{userRoleId}, #{userId} , #{roleId})")

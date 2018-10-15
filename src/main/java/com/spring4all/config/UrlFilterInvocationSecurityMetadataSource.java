@@ -1,14 +1,17 @@
 package com.spring4all.config;
 
+import com.spring4all.domain.po.MenuEntity;
+import com.spring4all.domain.po.RoleEntity;
 import com.spring4all.service.impl.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.ConfigAttribute;
+import org.springframework.security.access.SecurityConfig;
 import org.springframework.security.web.FilterInvocation;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
 import org.springframework.stereotype.Component;
-import org.springframework.util.AntPathMatcher;
 
 import java.util.Collection;
+import java.util.List;
 
 @Component
 public class UrlFilterInvocationSecurityMetadataSource implements FilterInvocationSecurityMetadataSource {
@@ -16,14 +19,24 @@ public class UrlFilterInvocationSecurityMetadataSource implements FilterInvocati
     @Autowired
     MenuService menuService;
 
-    AntPathMatcher antPathMatcher = new AntPathMatcher();
-
-
     @Override
     public Collection<ConfigAttribute> getAttributes(Object o) throws IllegalArgumentException {
         //获取url
         String requestUrl = ((FilterInvocation) o).getRequestUrl();
-        return null;
+        //查询所有角色
+        List<MenuEntity> allMenu = menuService.getAllMenu();
+        for (MenuEntity menu : allMenu) {
+            List<RoleEntity> roles = menu.getRoles();
+            int size = roles.size();
+            String[] values = new String[size];
+            for (int i = 0; i < size; i++) {
+                values[i] = roles.get(i).getRoleName();
+            }
+            //放入角色
+            return SecurityConfig.createList(values);
+        }
+        //没有匹配上的资源，都是登录访问
+        return SecurityConfig.createList("ROLE_LOGIN");
     }
 
     @Override

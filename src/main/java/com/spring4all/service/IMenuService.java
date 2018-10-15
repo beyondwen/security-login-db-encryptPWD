@@ -2,6 +2,8 @@ package com.spring4all.service;
 
 import com.spring4all.domain.po.MenuEntity;
 
+import java.util.List;
+
 public interface IMenuService {
 
     /**
@@ -15,6 +17,8 @@ public interface IMenuService {
      * @param menuName 菜单名
      * @return MenuEntity
      */
-    MenuEntity getByMenuName(String menuName);
+    MenuEntity selectByMenuname(String menuName);
 
+
+    List<MenuEntity> getAllMenu();
 }

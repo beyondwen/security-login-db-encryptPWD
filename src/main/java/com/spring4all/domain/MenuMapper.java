@@ -3,12 +3,14 @@ package com.spring4all.domain;
 import com.spring4all.domain.po.MenuEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+
+
 @Mapper
-@Component
+@Repository
 public interface MenuMapper {
 
     int insert(MenuEntity menuEntity);

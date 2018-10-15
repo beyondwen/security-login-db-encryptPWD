@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @Primary
 public class MenuService implements IMenuService {
@@ -16,11 +18,17 @@ public class MenuService implements IMenuService {
 
     @Override
     public boolean insert(MenuEntity menuEntity) {
-        return false;
+        menuMapper.insert(menuEntity);
+        return true;
     }
 
     @Override
-    public MenuEntity getByMenuName(String menuName) {
-        return null;
+    public MenuEntity selectByMenuname(String menuName) {
+        return menuMapper.selectByMenuname(menuName);
+    }
+
+    @Override
+    public List<MenuEntity> getAllMenu() {
+        return menuMapper.getAllMenu();
     }
 }

@@ -2,19 +2,27 @@ package com.spring4all.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.config.annotation.ObjectPostProcessor;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 
 @EnableWebSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private AnyUserDetailsService anyUserDetailsService;
 
     @Autowired
-    public void setAnyUserDetailsService(AnyUserDetailsService anyUserDetailsService){
+    private UrlFilterInvocationSecurityMetadataSource urlFilterInvocationSecurityMetadataSource;
+
+    @Autowired
+    private UrlAccessDecisionManager urlAccessDecisionManager;
+
+    @Autowired
+    public void setAnyUserDetailsService(AnyUserDetailsService anyUserDetailsService) {
         this.anyUserDetailsService = anyUserDetailsService;
     }
 
@@ -30,6 +38,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         http
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
+                .withObjectPostProcessor(new ObjectPostProcessor<FilterSecurityInterceptor>() {
+                    @Override
+                    public <O extends FilterSecurityInterceptor> O postProcess(O object) {
+                        object.setAccessDecisionManager(urlAccessDecisionManager);
+                        object.setSecurityMetadataSource(urlFilterInvocationSecurityMetadataSource);
+                        return object;
+                    }
+                })
+                //.antMatchers("/").permitAll()
+                //.withObjectPostProcessor()
+                //.accessDecisionManager(new UrlAccessDecisionManager())
                 /*.antMatchers("/user/**").hasRole("USER")*/
                 .and()
                 .formLogin().loginPage("/login").defaultSuccessUrl("/user")
@@ -41,7 +60,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
      * 添加 UserDetailsService， 实现自定义登录校验
      */
     @Override
-    protected void configure(AuthenticationManagerBuilder builder) throws Exception{
+    protected void configure(AuthenticationManagerBuilder builder) throws Exception {
         builder.userDetailsService(anyUserDetailsService)
                 .passwordEncoder(passwordEncoder());
     }
@@ -50,7 +69,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
      * 密码加密
      */
     @Bean
-    public BCryptPasswordEncoder passwordEncoder(){
+    public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
