@@ -25,6 +25,11 @@ public class HomeController {
         return "login";
     }
 
+    @GetMapping("/forbidden")
+    public String forbidden() {
+        return "forbidden";
+    }
+
     @GetMapping("/register")
     public String register() {
         return "register";
