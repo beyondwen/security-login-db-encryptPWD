@@ -1,7 +1,6 @@
 package com.spring4all.config;
 
 import com.spring4all.domain.po.MenuEntity;
-import com.spring4all.domain.po.RoleEntity;
 import com.spring4all.domain.po.RoleMenuEntity;
 import com.spring4all.service.impl.MenuService;
 import com.spring4all.service.impl.RoleMenuService;
@@ -64,7 +63,8 @@ public class UrlFilterInvocationSecurityMetadataSource implements FilterInvocati
             }
         }
         //没有匹配上的资源，都是登录访问
-        return SecurityConfig.createList("ROLE_LOGIN");
+        //return SecurityConfig.createList("ROLE_LOGIN");
+        return null;
     }
 
     @Override
