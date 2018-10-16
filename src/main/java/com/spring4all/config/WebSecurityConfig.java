@@ -2,6 +2,7 @@ package com.spring4all.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.ObjectPostProcessor;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -16,10 +17,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private AnyUserDetailsService anyUserDetailsService;
 
     @Autowired
-    private UrlFilterInvocationSecurityMetadataSource urlFilterInvocationSecurityMetadataSource;
-
-    @Autowired
-    private UrlAccessDecisionManager urlAccessDecisionManager;
+    private MySecurityFilter mySecurityFilter;
 
     @Autowired
     public void setAnyUserDetailsService(AnyUserDetailsService anyUserDetailsService) {
@@ -35,23 +33,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
+        http.addFilterBefore(mySecurityFilter, FilterSecurityInterceptor.class)
                 .authorizeRequests()
-                .antMatchers("/").permitAll()
-                .withObjectPostProcessor(new ObjectPostProcessor<FilterSecurityInterceptor>() {
-                    @Override
-                    public <O extends FilterSecurityInterceptor> O postProcess(O object) {
-                        object.setAccessDecisionManager(urlAccessDecisionManager);
-                        object.setSecurityMetadataSource(urlFilterInvocationSecurityMetadataSource);
-                        return object;
-                    }
-                })
-                //.antMatchers("/").permitAll()
-                //.withObjectPostProcessor()
-                //.accessDecisionManager(new UrlAccessDecisionManager())
-                /*.antMatchers("/user/**").hasRole("USER")*/
+                .anyRequest().authenticated()
+                /*.antMatchers("/**").permitAll()
+                .antMatchers("/login").permitAll()*/
                 .and()
-                .formLogin().loginPage("/login").defaultSuccessUrl("/user")
+                .formLogin().loginPage("/login").permitAll().defaultSuccessUrl("/user")
                 .and()
                 .logout().logoutUrl("/logout").logoutSuccessUrl("/login");
     }
@@ -71,6 +59,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManager() throws Exception {
+        return super.authenticationManager();
     }
 
 }

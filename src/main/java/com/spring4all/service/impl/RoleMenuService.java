@@ -1,7 +1,7 @@
 package com.spring4all.service.impl;
 
-import com.spring4all.domain.po.RoleMenuEntity;
 import com.spring4all.domain.RoleMenuMapper;
+import com.spring4all.domain.po.RoleMenuEntity;
 import com.spring4all.service.IRoleMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -22,7 +22,12 @@ public class RoleMenuService implements IRoleMenuService {
     }
 
     @Override
-    public List<RoleMenuEntity> getByRoleId(Long roleId) {
-        return null;
+    public List<RoleMenuEntity> selectByRoleId(Long roleId) {
+        return roleMenuMapper.selectByRoleId(roleId);
+    }
+
+    @Override
+    public List<RoleMenuEntity> selectByMenuId(Long menuId) {
+        return roleMenuMapper.selectByMenuId(menuId);
     }
 }

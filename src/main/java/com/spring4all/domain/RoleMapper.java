@@ -12,12 +12,12 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RoleMapper {
 
-    @Insert("insert into role(id, role_name) values(#{id}, #{rolename})")
+    @Insert("insert into role(role_id, role_name) values(#{id}, #{rolename})")
     int insert(RoleEntity roleEntity);
 
     @Select("select * from role where role_name = #{roleName}")
     RoleEntity selectByRolename(@Param("roleName") String roleName);
 
-    @Select("select role_name roleName from role where id = #{roleid}")
+    @Select("select role_name roleName from role where role_id = #{roleid}")
     String selectByRoleid(@Param("roleid") Long roleid);
 }

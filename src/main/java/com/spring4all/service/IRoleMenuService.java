@@ -1,6 +1,9 @@
 package com.spring4all.service;
 
 import com.spring4all.domain.po.RoleMenuEntity;
+import com.spring4all.domain.po.UserRoleEntity;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -17,6 +20,9 @@ public interface IRoleMenuService {
      * @param roleId 角色id
      * @return RoleEntity
      */
-    List<RoleMenuEntity> getByRoleId(Long roleId);
+    List<RoleMenuEntity> selectByRoleId(Long roleId);
+
+
+    List<RoleMenuEntity> selectByMenuId(Long menuId);
 
 }
